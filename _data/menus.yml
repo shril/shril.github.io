@@ -1,0 +1,15 @@
+- title: home
+  url: /
+  external: false
+- title: about
+  url: /about/
+  external: false
+- title: python
+  url: /python/
+  external: false
+- title: data-engineering
+  url: /data-engineering/
+  external: false
+- title: leetcode
+  url: /leetcode/
+  external: false
