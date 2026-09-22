@@ -1,0 +1,62 @@
+---
+import Base from "../layouts/Base.astro";
+import { contributions, projects } from "../data/openSource";
+import { profile } from "../data/profile";
+---
+
+<Base
+  title="Open source"
+  description="Contributions to Hardwood and Koalas, plus a few projects of my own."
+>
+  <div class="page-head">
+    <h1>Open source</h1>
+    <p>
+      Contributions to projects I use, and a couple of small things of my own.
+    </p>
+  </div>
+
+  <section>
+    <h2 class="label">Contributions</h2>
+    <ul class="entries">
+      {
+        contributions.map((item) => (
+          <li class="entry">
+            <div class="entry__head">
+              <h3 class="entry__title">
+                {item.href ? <a href={item.href}>{item.name}</a> : item.name}
+              </h3>
+              <span class="entry__when">{item.role}</span>
+            </div>
+            <div class="entry__body">
+              <p>{item.body}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">Projects</h2>
+    <ul class="entries">
+      {
+        projects.map((item) => (
+          <li class="entry">
+            <div class="entry__head">
+              <h3 class="entry__title">
+                {item.href ? <a href={item.href}>{item.name}</a> : item.name}
+              </h3>
+              <span class="entry__when">{item.role}</span>
+            </div>
+            <div class="entry__body">
+              <p>{item.body}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="cta-row">
+      <a class="button" href={profile.links.github}>More on GitHub</a>
+    </div>
+  </section>
+</Base>

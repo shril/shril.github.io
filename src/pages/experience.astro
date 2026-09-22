@@ -1,0 +1,74 @@
+---
+import Base from "../layouts/Base.astro";
+import { experience, education, internships } from "../data/experience";
+import { skills } from "../data/skills";
+---
+
+<Base
+  title="Experience"
+  description="Eight years across Roku, Groupon, AtkinsRéalis, and Eatclub — data platforms, privacy systems, and agentic infrastructure."
+>
+  <div class="page-head">
+    <h1>Experience</h1>
+    <p>Eight years of building data infrastructure, most recently at petabyte scale.</p>
+  </div>
+
+  <section>
+    <h2 class="label">Roles</h2>
+    <ul class="entries">
+      {
+        experience.map((role) => (
+          <li class="entry">
+            <div class="entry__head">
+              <h3 class="entry__title">{role.company}</h3>
+              <span class="entry__when">{role.start} – {role.end}</span>
+            </div>
+            <p class="entry__sub">
+              {role.title} · {role.location}
+              {role.note ? ` · ${role.note}` : ""}
+            </p>
+            <ul class="bullets">
+              {role.points.map((p) => <li>{p}</li>)}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">Skills</h2>
+    <dl class="skills">
+      {
+        skills.map((group) => (
+          <div>
+            <dt>{group.label}</dt>
+            <dd>{group.items.join(" · ")}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section>
+    <h2 class="label">Education</h2>
+    <ul class="entries">
+      {
+        education.map((item) => (
+          <li class="entry">
+            <div class="entry__head">
+              <h3 class="entry__title">{item.institution}</h3>
+              <span class="entry__when">{item.start} – {item.end}</span>
+            </div>
+            <p class="entry__sub">{item.credential} · {item.detail}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">Internships</h2>
+    <p class="muted">{internships.join(" · ")}</p>
+  </section>
+</Base>

@@ -1,0 +1,105 @@
+---
+import Base from "../layouts/Base.astro";
+import { profile } from "../data/profile";
+import { experience, education, internships } from "../data/experience";
+import { skills } from "../data/skills";
+import { contributions } from "../data/openSource";
+---
+
+<Base title="CV" description={`Curriculum vitae for ${profile.name}, ${profile.title}.`}>
+  <div class="page-head">
+    <h1>Curriculum vitae</h1>
+    <p>{profile.title} · {profile.location}</p>
+    <div class="meta-row">
+      <a href={`mailto:${profile.links.email}`}>{profile.links.email}</a>
+      <a href={profile.links.github}>github.com/{profile.links.githubHandle}</a>
+      <a href={profile.links.linkedin}>linkedin.com/{profile.links.linkedinHandle}</a>
+    </div>
+    <div class="cta-row">
+      <a class="button button--primary" href={profile.links.cv}>Download PDF</a>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="label">Profile</h2>
+    {profile.summary.map((para) => <p>{para}</p>)}
+  </section>
+
+  <section>
+    <h2 class="label">Experience</h2>
+    <ul class="entries">
+      {
+        experience.map((role) => (
+          <li class="entry">
+            <div class="entry__head">
+              <h3 class="entry__title">{role.company}</h3>
+              <span class="entry__when">{role.start} – {role.end}</span>
+            </div>
+            <p class="entry__sub">
+              {role.title} · {role.location}
+              {role.note ? ` · ${role.note}` : ""}
+            </p>
+            <ul class="bullets">
+              {role.points.map((p) => <li>{p}</li>)}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">Skills</h2>
+    <dl class="skills">
+      {
+        skills.map((group) => (
+          <div>
+            <dt>{group.label}</dt>
+            <dd>{group.items.join(" · ")}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section>
+    <h2 class="label">Open source</h2>
+    <ul class="entries">
+      {
+        contributions.map((item) => (
+          <li class="entry">
+            <div class="entry__head">
+              <h3 class="entry__title">{item.name}</h3>
+              <span class="entry__when">{item.role}</span>
+            </div>
+            <div class="entry__body">
+              <p>{item.body}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">Education</h2>
+    <ul class="entries">
+      {
+        education.map((item) => (
+          <li class="entry">
+            <div class="entry__head">
+              <h3 class="entry__title">{item.institution}</h3>
+              <span class="entry__when">{item.start} – {item.end}</span>
+            </div>
+            <p class="entry__sub">{item.credential} · {item.detail}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">Internships</h2>
+    <p class="muted">{internships.join(" · ")}</p>
+  </section>
+</Base>

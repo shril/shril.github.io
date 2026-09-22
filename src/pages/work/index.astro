@@ -1,0 +1,42 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+
+const work = (await getCollection("work")).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<Base
+  title="Work"
+  description="Case studies in data governance, agentic infrastructure, privacy engineering, and petabyte-scale pipelines."
+>
+  <div class="page-head">
+    <h1>Work</h1>
+    <p>
+      Longer write-ups of systems I have designed and shipped. Figures are given
+      as ratios and rates rather than absolute volumes or costs.
+    </p>
+  </div>
+
+  <ul class="entries">
+    {
+      work.map((item) => (
+        <li class="entry">
+          <div class="entry__head">
+            <h2 class="entry__title">
+              <a href={`/work/${item.id}/`}>{item.data.title}</a>
+            </h2>
+            <span class="entry__when">{item.data.org} · {item.data.period}</span>
+          </div>
+          <div class="entry__body">
+            <p>{item.data.summary}</p>
+          </div>
+          <ul class="entry__tags">
+            {item.data.tags.map((t) => <li class="tag">{t}</li>)}
+          </ul>
+        </li>
+      ))
+    }
+  </ul>
+</Base>
