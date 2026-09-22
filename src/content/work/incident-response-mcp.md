@@ -9,7 +9,7 @@ tags: ["MCP", "Incident response", "Kubernetes", "Terraform", "Bazel"]
 
 During an incident, most of the time goes on retrieval rather than thinking. Has this happened before? What did we do last time? Is there a runbook? The information exists — in Slack history and Confluence — and it is effectively unsearchable at three in the morning.
 
-Minion is an internal incident-management assistant built to answer those questions. I built and productionised the two MCP servers that give it access to the source material: one for Slack incident history, one for Confluence runbook retrieval.
+We built an internal incident-management assistant to answer those questions. I built and productionised the two MCP servers that give it access to the source material: one for Slack incident history, one for Confluence runbook retrieval.
 
 ## The security model came first
 
