@@ -1,5 +1,5 @@
 ---
-title: Frost — an agentic workflow for migrating a data lake
+title: An agentic workflow for migrating a data lake to Iceberg
 summary: An agentic Hive-to-Iceberg migration platform with mandatory human approval gates. Migrated 450 tables across 40 workflows with no production incidents, delivered by three engineers instead of roughly ten.
 org: Roku
 period: "2025"
@@ -9,11 +9,11 @@ tags: ["Agentic workflows", "Iceberg", "Migration", "Human-in-the-loop", "Lineag
 
 Migrating a Hive table to Iceberg is not difficult. Migrating several hundred of them is, because the difficulty is not technical — it is that each table carries its own context. Who owns it, what writes to it, what reads from it, whether it holds PII or falls under SOX, how it is partitioned, and how badly things break if you get it wrong.
 
-An engineer doing this manually spends most of their time gathering that context, and very little time on the migration itself. Frost automates the gathering and keeps the human for the judgment.
+An engineer doing this manually spends most of their time gathering that context, and very little time on the migration itself. The platform I built automates the gathering and keeps the human for the judgment.
 
 ## What it does
 
-Frost accepts a table, a set of tables, or an entire DAG. The DAG case is the one that saved the most time in practice: given a pipeline, it discovers the tables belonging to it rather than making an engineer enumerate them by hand, which is both tedious and the step where things get missed.
+It accepts a table, a set of tables, or an entire DAG. The DAG case is the one that saved the most time in practice: given a pipeline, it discovers the tables belonging to it rather than making an engineer enumerate them by hand, which is both tedious and the step where things get missed.
 
 From there it runs through discovery, generation, validation, and controlled rollout:
 
@@ -27,9 +27,9 @@ From there it runs through discovery, generation, validation, and controlled rol
 
 ## The gates are the point
 
-Frost runs on Forge, our internal framework for agentic data-engineering applications, which supplies orchestration, tool integrations, approval gates, monitoring, auditability, and reusable agents.
+It runs on an internal framework for agentic data-engineering applications, which supplies orchestration, tool integrations, approval gates, monitoring, auditability, and reusable agents.
 
-What makes Frost trustworthy is not the automation but the places where it refuses to proceed. Engineers review the generated migration YAML and plan. They review the DAG code diff. After downstream validation they decide whether to promote, adjust, or abort. Production merges additionally require sign-off from both Data Engineering and Data Platform.
+What makes it trustworthy is not the automation but the places where it refuses to proceed. Engineers review the generated migration YAML and plan. They review the DAG code diff. After downstream validation they decide whether to promote, adjust, or abort. Production merges additionally require sign-off from both Data Engineering and Data Platform.
 
 None of these gates are advisory. The workflow stops and waits.
 
@@ -37,7 +37,7 @@ This is a deliberate position on where agents belong in infrastructure work. The
 
 ## Surviving the real world
 
-Long migrations fail in boring ways — a pipeline is flaky, a reviewer goes on holiday, the orchestrator restarts. Frost keeps durable state per `run_id`, tracking the current phase, gate decisions, merge request URLs, branches, and retry counts, so a migration can pause for days and resume where it left off. Failed validation is diagnosed and retried, up to a bounded number of attempts per phase, rather than dumping a stack trace on someone.
+Long migrations fail in boring ways — a pipeline is flaky, a reviewer goes on holiday, the orchestrator restarts. The workflow keeps durable state per `run_id`, tracking the current phase, gate decisions, merge request URLs, branches, and retry counts, so a migration can pause for days and resume where it left off. Failed validation is diagnosed and retried, up to a bounded number of attempts per phase, rather than dumping a stack trace on someone.
 
 It also writes its own audit trail across GitLab, Jira, Slack, and Confluence as it goes. That was originally for compliance, but the more common use turned out to be an engineer asking "what happened to this table three weeks ago" and getting an answer.
 
