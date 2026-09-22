@@ -22,9 +22,9 @@
   --fg-faint: #8a8a82;
   --rule: #e3e3de;
   --rule-strong: #cdcdc6;
-  --accent: #1f5f4f;
-  --accent-soft: #e6f0ec;
-  --selection: #d6e8e1;
+  --accent: #4169e1;
+  --accent-soft: #e8edfb;
+  --selection: #d9e2fa;
 }
 
 :root[data-theme="dark"] {
@@ -36,9 +36,11 @@
   --fg-faint: #75756d;
   --rule: #2a2a28;
   --rule-strong: #3d3d3a;
-  --accent: #7fd1b9;
-  --accent-soft: #1b2a26;
-  --selection: #24413a;
+  /* A lightened royal blue: #4169e1 only reaches ~3.9:1 on this background,
+     which is below AA for body-sized link text. */
+  --accent: #6b8fea;
+  --accent-soft: #1a2038;
+  --selection: #23304f;
 }
 
 *,
