@@ -1,0 +1,38 @@
+---
+import Base from "../layouts/Base.astro";
+import { profile } from "../data/profile";
+---
+
+<Base title="About" description={`About ${profile.name}.`}>
+  <div class="page-head">
+    <h1>About</h1>
+  </div>
+
+  <div class="prose">
+    {profile.summary.map((para) => <p>{para}</p>)}
+
+    <p>
+      The through-line in most of what I build is governance that does not rely
+      on people remembering to be careful. A policy written in a wiki is a
+      suggestion; a policy enforced in the query path is a guarantee. Most of my
+      recent work — sensitive-data classification, certified-metric enforcement,
+      approval-gated migrations, identifier rotation for deletion — is some
+      version of moving a rule from documentation into the critical path.
+    </p>
+
+    <p>
+      I am also interested in where language models genuinely help with this and
+      where they do not. They are good at assembling context and drafting
+      structure, and they are not accountable for a corrupted production table
+      or a misclassified PII column. The systems I have had most success with
+      lean hard on the first and keep a human firmly attached to the second.
+    </p>
+
+    <h2>Elsewhere</h2>
+    <p>
+      I am on <a href={profile.links.github}>GitHub</a> and
+      <a href={profile.links.linkedin}>LinkedIn</a>, and reachable at
+      <a href={`mailto:${profile.links.email}`}>{profile.links.email}</a>.
+    </p>
+  </div>
+</Base>
