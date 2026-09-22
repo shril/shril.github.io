@@ -1,47 +1,40 @@
-# Klisé
+# shril.github.io
 
-Klisé is minimalist Jekyll theme for running a personal site and blog running on Jekyll.<br>
-For demo <a href="https://klise.now.sh" target="_blank">klise.now.sh</a>
+Personal site — [shril.github.io](https://shril.github.io)
 
-## Features
+Built with [Astro](https://astro.build), deployed to GitHub Pages by GitHub Actions
+on every push to `master`.
 
-- Light & Dark Mode support :waxing_crescent_moon:
-- Customizable (using `.scss`)
-- Responsive (desktop, tab and mobile)
-- Mobile First Design
-- SEO Optimized
-- RSS Feed
-- Syntax Highlighter ([rouge](https://github.com/rouge-ruby/rouge))
-- Next & Previous Post
-- Comment layout, enable in frontmatter if you wish
-- Google analytics
-- HTML Minify ([compressed HTML](https://github.com/penibelst/jekyll-compress-html))
-- W3C **Validated**
-- Lighthouse and PageSpeed **Passed**
+## Local development
 
-![Lighthouse](./lighthouse.png)
-
-## Installation
-
-Run local server:
+Requires Node 22 (see `.nvmrc`).
 
 ```bash
-git clone https://github.com/piharpi/jekyll-klise.git
-cd jekyll-klise
-bundle install
-bundle exec jekyll serve
+npm install
+npm run dev      # dev server with hot reload, http://localhost:4321
+npm run build    # production build into dist/
+npm run preview  # serve the built output
 ```
 
-Navigate to `localhost:4000`. You're Welcome, Fork and be Stargaze.
+## Where the content lives
 
-**Don't Forget** to change site icon, go to `jekyll-klise/assets/favicons` and replace with your own.
+Most edits do not require touching a component.
 
-## Contributing
+| What | File |
+|---|---|
+| Name, title, tagline, links, headline metrics | `src/data/profile.ts` |
+| Roles, bullet points, education | `src/data/experience.ts` |
+| Skill groups | `src/data/skills.ts` |
+| Open-source contributions and projects | `src/data/openSource.ts` |
+| Case studies | `src/content/work/*.md` |
+| CV PDF | `public/Shril-Kumar-CV.pdf` |
+| Colours, type scale, spacing | `src/styles/global.css` (CSS custom properties at the top) |
 
-If you see any typos or formatting errors in a post, or any other issue that needs to be addressed, please do not hesitate to open a pull request and fix it!
+Case studies are ordered by the `order` field in their frontmatter; the home page
+shows the first four.
 
-Yeaaa feel free to open a pull request.
+## Deployment
 
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
+`.github/workflows/deploy.yml` builds the site and publishes it to Pages. The
+repository's Pages source must be set to **GitHub Actions** (Settings → Pages),
+not the legacy branch-based Jekyll build.

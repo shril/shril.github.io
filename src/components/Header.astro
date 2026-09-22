@@ -1,0 +1,33 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+import { profile } from "../data/profile";
+
+const { pathname } = Astro.url;
+
+const nav = [
+  { href: "/work/", label: "Work" },
+  { href: "/experience/", label: "Experience" },
+  { href: "/open-source/", label: "Open source" },
+  { href: "/cv/", label: "CV" },
+  { href: "/about/", label: "About" },
+];
+
+const isCurrent = (href: string) =>
+  pathname === href || pathname === href.replace(/\/$/, "");
+---
+
+<header class="site-header">
+  <div class="wrap wrap--wide site-header__inner">
+    <a class="brand" href="/">{profile.name}</a>
+    <nav class="nav" aria-label="Main">
+      {
+        nav.map((item) => (
+          <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+      <ThemeToggle />
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,80 @@
+---
+import Base from "../layouts/Base.astro";
+import { profile } from "../data/profile";
+import { experience } from "../data/experience";
+import { getCollection } from "astro:content";
+
+const work = (await getCollection("work")).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const featured = work.slice(0, 4);
+const current = experience[0];
+---
+
+<Base>
+  <section class="hero">
+    <h1>{profile.name}</h1>
+    <p class="hero__title">{profile.title}</p>
+    <p class="hero__lede">{profile.tagline}</p>
+    <div class="meta-row">
+      <a href={profile.links.github}>github.com/{profile.links.githubHandle}</a>
+      <a href={profile.links.linkedin}>linkedin.com/{profile.links.linkedinHandle}</a>
+      <a href={`mailto:${profile.links.email}`}>{profile.links.email}</a>
+      <span class="muted">{profile.location}</span>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">Selected outcomes</h2>
+    <dl class="metrics">
+      {
+        profile.highlights.map((h) => (
+          <div>
+            <dt class="metric__value">{h.metric}</dt>
+            <dd class="metric__label">{h.label}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section>
+    <h2 class="label">Selected work</h2>
+    <ul class="entries">
+      {
+        featured.map((item) => (
+          <li class="entry">
+            <div class="entry__head">
+              <h3 class="entry__title">
+                <a href={`/work/${item.id}/`}>{item.data.title}</a>
+              </h3>
+              <span class="entry__when">{item.data.org} · {item.data.period}</span>
+            </div>
+            <div class="entry__body">
+              <p>{item.data.summary}</p>
+            </div>
+            <ul class="entry__tags">
+              {item.data.tags.slice(0, 4).map((t) => <li class="tag">{t}</li>)}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="cta-row">
+      <a class="button" href="/work/">All case studies</a>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">Now</h2>
+    <p>
+      {current.title} at <strong>{current.company}</strong>, {current.note?.toLowerCase()}.
+      I work on sensitive-data classification, governed access for AI agents, and
+      moving a petabyte-scale lake onto Iceberg without breaking it.
+    </p>
+    <div class="cta-row">
+      <a class="button" href="/experience/">Full experience</a>
+      <a class="button button--primary" href={profile.links.cv}>Download CV</a>
+    </div>
+  </section>
+</Base>
