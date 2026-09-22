@@ -18,6 +18,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
 
@@ -26,7 +27,12 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
 
-      - run: npm ci
+      # The npm bundled with Node 22 hangs for ~8 minutes on this install and
+      # then fails with "Exit handler never called!", a known npm bug. A
+      # current npm installs the same lockfile in seconds.
+      - run: npm install -g npm@latest
+
+      - run: npm ci --no-audit --no-fund
 
       - run: npm run build
 
