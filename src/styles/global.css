@@ -693,7 +693,11 @@ h1 { font-size: clamp(2.5rem, 4.6vw, 4rem); letter-spacing: -.035em; }
 .oss-item p { font-size: 14px; color: var(--fg-muted); margin: 0 0 8px; }
 .oss-item .contribution { color: var(--fg); font-size: 13px; }
 .related { font-size: 13px; color: var(--fg-muted); border-top: 1px solid var(--rule); padding: 18px 0; margin: 29px 0 0; max-width: none; }
-.related a { color: var(--accent); }
+.related h2 { font: 600 14px var(--font-sans); margin: 0 0 14px; color: var(--fg); }
+.related-roles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 35px; }
+.related-roles p { margin: 0; max-width: none; }
+.related a { color: var(--accent); font-weight: 600; }
+.related span { display: block; margin-top: 6px; }
 .sources { font-size: 12px; color: var(--fg-muted); padding: 0 0 20px; }
 .sources summary { cursor: pointer; }
 .sources p { max-width: 960px; margin: 10px 0 0; }
@@ -707,6 +711,7 @@ h1 { font-size: clamp(2.5rem, 4.6vw, 4rem); letter-spacing: -.035em; }
  .estate-metrics { padding: 21px 0; margin-bottom: 30px; } .estate-metric { padding: 0 12px; } .estate-metric strong { font-size: clamp(23px, 7vw, 30px); white-space: nowrap; } .estate-metric span { font-size: 13px; line-height: 1.45; } .estate-metric small { font-size: 11px; line-height: 1.45; }
  .stories { grid-template-columns: 1fr; gap: 15px; } .story { padding: 23px; } .story h3 { font-size: 27px; } .story p { font-size: 15px; } .context { grid-template-columns: 1fr; gap: 17px; padding: 20px; margin-top: 20px; } .oss-grid { grid-template-columns: 1fr; gap: 21px; }
  .oss-item p { font-size: 15px; } .oss-item .contribution, .related { font-size: 14px; }
+ .related-roles { grid-template-columns: 1fr; }
 }
 @media(max-width: 370px) { .platform-hero h1 { font-size: 40px; } .estate-metric { padding: 0 9px; } .estate-metric strong { font-size: 23px; } .nav { gap: 10px; } }
 
