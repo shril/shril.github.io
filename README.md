@@ -22,16 +22,23 @@ Most edits do not require touching a component.
 
 | What | File |
 |---|---|
-| Name, title, tagline, links, headline metrics | `src/data/profile.ts` |
-| Roles, bullet points, education | `src/data/experience.ts` |
+| CV profile, title and canonical links | `src/data/profile.ts` |
+| CV roles, bullet points, education | `src/data/experience.ts` |
 | Skill groups | `src/data/skills.ts` |
 | Open-source contributions and projects | `src/data/openSource.ts` |
+| Website-only experience and contribution copy | `src/data/website.ts` |
+| Homepage presentation and selected outcomes | `src/pages/index.astro` |
+| Wayve landing page | `src/pages/wayve.astro` |
 | Case studies | `src/content/work/*.md` |
 | CV PDF | `public/Shril-Kumar-CV.pdf` |
 | Colours, type scale, spacing | `src/styles/global.css` (CSS custom properties at the top) |
 
 Case studies are ordered by the `order` field in their frontmatter; the home page
-shows the first four.
+shows the first three as featured stories and retains the others as supporting work.
+
+The site uses a shared light cream/teal palette with Georgia headings. The
+canonical CV PDF and CV source inputs are maintained independently of website
+copy; update them only when explicitly intended. `/wayve/` uses the same PDF.
 
 ## Deployment
 

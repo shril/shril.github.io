@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
-import { contributions, projects } from "../data/openSource";
+import { projects } from "../data/openSource";
+import { websiteContributions as contributions } from "../data/website";
 import { profile } from "../data/profile";
 ---
 
@@ -28,6 +29,7 @@ import { profile } from "../data/profile";
               <span class="entry__when">{item.role}</span>
             </div>
             <div class="entry__body">
+              {("description" in item) && <p>{item.description}</p>}
               <p>{item.body}</p>
             </div>
           </li>

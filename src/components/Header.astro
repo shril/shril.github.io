@@ -1,33 +1,23 @@
 ---
-import ThemeToggle from "./ThemeToggle.astro";
 import { profile } from "../data/profile";
-
+interface Props { compact?: boolean; }
+const { compact = false } = Astro.props;
 const { pathname } = Astro.url;
-
 const nav = [
   { href: "/work/", label: "Work" },
   { href: "/experience/", label: "Experience" },
   { href: "/open-source/", label: "Open source" },
-  { href: "/cv/", label: "CV" },
   { href: "/about/", label: "About" },
 ];
-
-const isCurrent = (href: string) =>
-  pathname === href || pathname === href.replace(/\/$/, "");
+const isCurrent = (href: string) => pathname === href || pathname === href.replace(/\/$/, "");
 ---
-
 <header class="site-header">
   <div class="wrap wrap--wide site-header__inner">
-    <a class="brand" href="/">{profile.name}</a>
-    <nav class="nav" aria-label="Main">
-      {
-        nav.map((item) => (
-          <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>
-            {item.label}
-          </a>
-        ))
-      }
-      <ThemeToggle />
+    <a class="identity" href="/" aria-label="Shril Kumar — home"><span class="monogram" aria-hidden="true">SK</span><span><span class="brand">{profile.name}</span><span class="identity__job">{compact ? "Senior Software Engineer" : profile.title}</span></span></a>
+    <nav class:list={["nav", { "nav--compact": compact }]} aria-label={compact ? "Contact and résumé" : "Main"}>
+      {!compact && nav.map((item) => <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>{item.label}</a>)}
+      <a class="button button--primary cv-button" href={profile.links.cv}>Read CV <span aria-hidden="true">↗</span></a>
+      {compact && <a href={`mailto:${profile.links.email}`}>Contact ↗</a>}
     </nav>
   </div>
 </header>

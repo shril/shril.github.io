@@ -1,5 +1,5 @@
 ---
-title: An agentic workflow for migrating a data lake to Iceberg
+title: Migrating a data lake to Iceberg, with human control
 summary: An agentic Hive-to-Iceberg migration platform with mandatory human approval gates. Migrated 450 tables across 40 workflows with no production incidents, delivered by three engineers instead of roughly ten.
 org: Roku
 period: "2025"
@@ -46,3 +46,6 @@ It also writes its own audit trail across GitLab, Jira, Slack, and Confluence as
 **450 tables across 40 workflows, with no production incidents to date.** For 75% of non-critical tables, the generated YAML needed no engineering tuning at all after the mandatory review — the review confirmed the configuration rather than fixing it.
 
 The comparison I find most telling is staffing. A three-engineer team delivered this, against an estimate of roughly ten for running the same programme manually. The savings did not come from the agent writing YAML faster than a person could. They came from eliminating the context-gathering that dominated each migration, and from the 75% of tables that stopped needing an expert opinion at all.
+
+
+The Iceberg migration and maintenance tools are used by **10+ teams**. Migration progress — **450 tables migrated** — is separate from the Rust maintenance framework’s **500+ mission-critical tables**. [Read about maintenance and reliable ingestion](/work/ads-platform-rearchitecture/).

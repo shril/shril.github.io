@@ -3,7 +3,7 @@ title: An LLM PII classifier, and the flywheel that fixed it
 summary: Built in-house sensitive-data discovery for the ads data platform instead of buying it, then closed the loop between analyst corrections and training data to move precision from 84% to 91% without giving up recall.
 org: Roku
 period: 2024 – present
-order: 1
+order: 4
 tags: ["LLMs", "Data governance", "Synthetic data", "Evaluation", "PII"]
 ---
 

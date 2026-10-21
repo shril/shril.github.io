@@ -3,7 +3,7 @@ title: Governing what AI agents are allowed to ask the warehouse
 summary: A governed MCP data-access layer over roughly 5,000 tables, enforcing schema, lineage, ownership, identity, and metric certification before a query runs. Adopted by 120+ platform engineers.
 org: Roku
 period: "2025"
-order: 3
+order: 5
 tags: ["MCP", "Trino", "DataHub", "Access control", "OAuth"]
 ---
 

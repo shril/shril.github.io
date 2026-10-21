@@ -1,13 +1,13 @@
 ---
-title: Deleting the tracker table
+title: Reliable Ads ingestion with safe reruns
 summary: Re-architected hourly ad impression and conversion processing from mutable tracker state to stateless, idempotent Iceberg pipelines. Runtime down 35%, Trino latency down 20%, incident recovery from a day to two hours.
 org: Roku
 period: 2024 – 2025
-order: 4
+order: 1
 tags: ["Apache Spark", "Iceberg", "Idempotency", "Trino", "SLA"]
 ---
 
-The ads data platform processes hundreds of millions of ad impressions and tens of millions of advertiser conversion events every day, and has to publish under a **one-hour SLA**. When I picked this up, the pipelines met that SLA most of the time, and when they missed it they missed badly.
+The broader Ads Data Platform has a **70+ PB data lake footprint**. The Ads ingestion pipeline processes **250M+ ad impression and advertiser conversion events every day** and has to publish under a **one-hour SLA**. When I picked this up, the pipelines met that SLA most of the time, and when they missed it they missed badly.
 
 ## The bug was the architecture
 
@@ -45,4 +45,6 @@ Iceberg tables degrade if left alone. Small files accumulate, delete files pile 
 
 So I built a config-driven maintenance framework covering data-file and positional-delete compaction, snapshot expiry, and orphan cleanup, integrated with Airflow at one task per table and operation. That granularity means a single misbehaving table's maintenance can be retried or tuned in isolation instead of taking down a monolithic maintenance DAG.
 
-It now maintains **100+ production tables**, including but not limited to the ones from this project — which is how it should be, since the degradation problem is a property of Iceberg rather than of these pipelines.
+The Rust framework now maintains **500+ mission-critical tables**, including tables beyond this project. Its compaction has **90% lower compute cost than Spark**; that comparison applies specifically to compaction. Iceberg migration and maintenance tools are used by **10+ teams**.
+
+Maintenance coverage is distinct from migration progress: the separate Hive-to-Iceberg platform has migrated **450 tables**. [Read about the migration workflow](/work/hive-to-iceberg-migration/).

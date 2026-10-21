@@ -3,7 +3,7 @@ title: From 90 days to 5 — rebuilding GDPR deletion
 summary: Redesigned deletion across a petabyte-scale data lake using virtual-identifier rotation for immediate disassociation, cutting end-to-end fulfilment 94%. Separately re-architected data download from MapReduce to Spark for a 50× intake increase.
 org: Roku
 period: 2024 – 2025
-order: 5
+order: 6
 tags: ["GDPR", "Privacy engineering", "Apache Spark", "Compliance", "Anonymisation"]
 ---
 

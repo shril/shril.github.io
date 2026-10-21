@@ -1,80 +1,44 @@
 ---
 import Base from "../layouts/Base.astro";
 import { profile } from "../data/profile";
-import { experience } from "../data/experience";
 import { getCollection } from "astro:content";
-
-const work = (await getCollection("work")).sort(
-  (a, b) => a.data.order - b.data.order
-);
-const featured = work.slice(0, 4);
-const current = experience[0];
+const work = (await getCollection("work")).sort((a, b) => a.data.order - b.data.order);
+const featured = work.slice(0, 3);
+const supporting = work.slice(3);
+const outcomes = [
+  { value: "1 day → 2 hours", label: "Incident recovery with safe reruns" },
+  { value: "450 tables migrated", label: "Hive → Iceberg, with no production incidents" },
+  { value: "~$2M → $200K / year", label: "Datastore cost after the Bigtable migration" },
+];
 ---
-
-<Base>
-  <section class="hero">
-    <h1>{profile.name}</h1>
-    <p class="hero__title">{profile.title}</p>
-    <p class="hero__lede">{profile.tagline}</p>
-    <div class="meta-row">
-      <a href={profile.links.github}>github.com/{profile.links.githubHandle}</a>
-      <a href={profile.links.linkedin}>linkedin.com/{profile.links.linkedinHandle}</a>
-      <a href={`mailto:${profile.links.email}`}>{profile.links.email}</a>
-      <span class="muted">{profile.location}</span>
+<Base wide description="Shril Kumar builds fast, reliable data platforms and AI infrastructure: recoverable ingestion, Iceberg tooling, cloud migrations and governed data access.">
+  <section class="platform-hero" aria-labelledby="page-title">
+    <div><p class="eyebrow">Shril Kumar · Data & AI Infrastructure Engineer</p><h1 id="page-title">Building fast, reliable<br /><em>data platforms at scale.</em></h1></div>
+    <p class="intro"><strong>8+ years building production data systems.</strong> At Roku and Groupon, I’ve made ingestion recoverable, moved workloads across clouds, and built tools that teams depend on. I also build governed data access and AI infrastructure.</p>
+  </section>
+  <section class="estate-metrics" aria-label="Selected experience at Roku">
+    <div class="estate-metric"><strong>250M+</strong><span>Ads events processed daily</span><small>Impressions & conversions</small></div>
+    <div class="estate-metric"><strong>70+ PB</strong><span>Data lake footprint</span><small>of Ads Data Platform</small></div>
+    <div class="estate-metric"><strong>500+</strong><span>Mission-critical tables</span><small>Managed by my maintenance framework</small></div>
+  </section>
+  <section aria-labelledby="selected-work">
+    <h2 class="section-title" id="selected-work">Data platforms that hold up in production</h2>
+    <p class="section-intro">Reliable ingestion. Reusable Iceberg tooling. Cloud migrations that keep the platform running.</p>
+    <div class="stories">
+      {featured.map((item, index) => <article class="story">
+        <div class="story-kicker">0{index + 1} · {item.data.org}</div>
+        <h3><a href={`/work/${item.id}/`}>{item.data.title}</a></h3>
+        <p>{item.data.summary}</p>
+        <div class="outcome"><strong>{outcomes[index].value}</strong><span>{outcomes[index].label}</span></div>
+        <a class="story-link" href={`/work/${item.id}/`}>Read case study →</a>
+      </article>)}
     </div>
+    <div class="context"><p><strong>Shared Iceberg tooling</strong>Migration and maintenance tools used by 10+ teams. Rust compaction has 90% lower compute cost than Spark; maintenance coverage and migration progress are separate measures.</p><p><strong>Production toolkit</strong>Python · Rust · Scala · Terraform · Spark · Iceberg · Kafka<br />Airflow is my primary production orchestrator.</p></div>
   </section>
-
-  <section>
-    <h2 class="label">Selected outcomes</h2>
-    <dl class="metrics">
-      {
-        profile.highlights.map((h) => (
-          <div>
-            <dt class="metric__value">{h.metric}</dt>
-            <dd class="metric__label">{h.label}</dd>
-          </div>
-        ))
-      }
-    </dl>
+  <section aria-labelledby="ai-work">
+    <h2 class="section-title" id="ai-work">AI infrastructure, governance & privacy</h2>
+    <p class="section-intro">The same focus on recoverability and clear controls, applied to AI systems and sensitive data.</p>
+    <ul class="entries">{supporting.map((item) => <li class="entry"><div class="entry__head"><h3 class="entry__title"><a href={`/work/${item.id}/`}>{item.data.title}</a></h3><span class="entry__when">{item.data.org} · {item.data.period}</span></div><div class="entry__body"><p>{item.data.summary}</p></div></li>)}</ul>
   </section>
-
-  <section>
-    <h2 class="label">Selected work</h2>
-    <ul class="entries">
-      {
-        featured.map((item) => (
-          <li class="entry">
-            <div class="entry__head">
-              <h3 class="entry__title">
-                <a href={`/work/${item.id}/`}>{item.data.title}</a>
-              </h3>
-              <span class="entry__when">{item.data.org} · {item.data.period}</span>
-            </div>
-            <div class="entry__body">
-              <p>{item.data.summary}</p>
-            </div>
-            <ul class="entry__tags">
-              {item.data.tags.slice(0, 4).map((t) => <li class="tag">{t}</li>)}
-            </ul>
-          </li>
-        ))
-      }
-    </ul>
-    <div class="cta-row">
-      <a class="button" href="/work/">All case studies</a>
-    </div>
-  </section>
-
-  <section>
-    <h2 class="label">Now</h2>
-    <p>
-      {current.title} at <strong>{current.company}</strong>, {current.note?.toLowerCase()}.
-      I work on sensitive-data classification, governed access for AI agents, and
-      moving a petabyte-scale lake onto Iceberg without breaking it.
-    </p>
-    <div class="cta-row">
-      <a class="button" href="/experience/">Full experience</a>
-      <a class="button button--primary" href={profile.links.cv}>Download CV</a>
-    </div>
-  </section>
+  <section><h2 class="section-title">Currently at Roku</h2><p class="intro">Senior Software Development Engineer on the Ads Data Platform, leading four engineers informally. My work spans ingestion reliability, Iceberg migration and maintenance, sensitive-data discovery and governed access for AI agents.</p><div class="cta-row"><a class="button" href="/experience/">Full experience</a><a class="button" href="/open-source/">Open-source contributions</a><a class="button button--primary" href={profile.links.cv}>Read CV ↗</a></div></section>
 </Base>

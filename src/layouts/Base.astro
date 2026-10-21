@@ -8,12 +8,14 @@ interface Props {
   title?: string;
   description?: string;
   wide?: boolean;
+  compact?: boolean;
 }
 
 const {
   title,
   description = siteMeta.description,
   wide = false,
+  compact = false,
 } = Astro.props;
 
 const pageTitle = title ? `${title} — ${profile.name}` : `${profile.name} — ${profile.title}`;
@@ -38,24 +40,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? siteMeta.url);
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary" />
 
-    <!-- Apply stored theme before first paint to prevent a flash. -->
-    <script is:inline>
-      (() => {
-        let stored = null;
-        try {
-          stored = localStorage.getItem("theme");
-        } catch {}
-        const prefersDark =
-          window.matchMedia("(prefers-color-scheme: dark)").matches;
-        document.documentElement.dataset.theme =
-          stored ?? (prefersDark ? "dark" : "light");
-      })();
-    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <Header />
-    <main id="main">
+    <Header compact={compact} />
+    <main id="main" class:list={{ "main--compact": compact }}>
       <div class={wide ? "wrap wrap--wide" : "wrap"}>
         <slot />
       </div>

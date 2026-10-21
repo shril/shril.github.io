@@ -3,7 +3,7 @@ title: Least-privilege MCP servers for an incident assistant
 summary: Productionised Slack incident-history and Confluence runbook-retrieval MCP servers for an internal AI incident assistant, with read allowlists, least-privilege scopes, and button-gated writes. Adopted by 20+ teams and 150+ engineers.
 org: Roku
 period: "2025"
-order: 6
+order: 7
 tags: ["MCP", "Incident response", "Kubernetes", "Terraform", "Bazel"]
 ---
 

@@ -1,0 +1,33 @@
+---
+import Base from "../layouts/Base.astro";
+---
+<Base title="For Wayve" description="Shril Kumar for Wayve’s Senior Software Engineer, Data role: reliable ingestion, cross-cloud migrations and reusable data tooling." wide compact>
+<div class="wayve-page">
+<section class="platform-hero" aria-labelledby="page-title">
+<div><p class="eyebrow">Shril Kumar · Candidate for Wayve</p><h1 id="page-title">Building fast, reliable<br><em>data platforms at scale.</em></h1></div>
+<p class="intro"><strong>8+ years building production data systems.</strong> At Roku and Groupon, I’ve made ingestion recoverable, moved workloads across clouds, and built tools that teams depend on.</p>
+</section>
+<p class="target"><span>Focused on</span><a href="https://jobs.ashbyhq.com/wayve/3ef8fd28-0831-44b8-b3db-deb18882aeec" target="_blank" rel="noopener">Senior Software Engineer, Data ↗</a><span>· Portal / Data Transfer Hub</span></p>
+<section class="estate-metrics" aria-label="Selected experience at Roku">
+<div class="estate-metric"><strong>250M+</strong><span>Ads events processed daily</span><small>Impressions & conversions</small></div>
+<div class="estate-metric"><strong>70+ PB</strong><span>Data lake footprint</span><small>of Ads Data Platform</small></div>
+<div class="estate-metric"><strong>500+</strong><span>Mission-critical tables</span><small>Managed by my maintenance framework</small></div>
+</section>
+<section aria-labelledby="evidence-title">
+<h2 class="section-title" id="evidence-title">Experience for Wayve’s Data Transfer Hub</h2>
+<p class="section-intro">Reliable ingestion. Cross-cloud migrations. Tools that make large data estates easier to operate.</p>
+<div class="stories">
+<article class="story"><div class="story-kicker">01 · Ingestion & recovery · Roku</div><h3>Make failed work<br>safe to rerun.</h3><p>Overhauled the Ads Pipeline with <strong>idempotent Iceberg processing</strong> and audited publication. Scala Spark handles 250M+ daily events within a one-hour publishing SLA.</p><div class="outcome"><strong>1 day → 2 hours</strong><span>Incident recovery with safe reruns</span></div></article>
+<article class="story"><div class="story-kicker">02 · Cloud migration · Groupon</div><h3>Move the platform.<br>Keep it running.</h3><p>Migrated <strong>2,500 Spark jobs to GCP Dataproc</strong> with phased cutovers. A separate AWS Keyspaces → GCP Bigtable migration delivered zero downtime and lower cost.</p><div class="outcome"><strong>~$2M → $200K / year</strong><span>Datastore cost after the Bigtable migration</span></div></article>
+<article class="story"><div class="story-kicker">03 · Shared tooling · Roku</div><h3>Build tools teams<br>can depend on.</h3><p>Designed <strong>Iceberg migration and maintenance tools used by 10+ teams</strong>. The Rust maintenance framework manages 500+ mission-critical tables, including compaction and lifecycle cleanup. Separately, <strong>450 Hive tables migrated to Iceberg</strong> across 40 workflows with no production incidents.</p><div class="outcome"><strong>90% lower compute cost</strong><span>Rust compaction compared with Spark</span></div></article>
+</div>
+<div class="context"><p><strong>Experience with image & geospatial data</strong>Built image and GIS pipelines on Databricks at Atkins.</p><p><strong>Relevant engineering toolkit</strong>Python · Terraform · Spark · Iceberg · Kafka<br>Airflow is my primary production orchestrator.</p></div>
+</section>
+<section class="open-source" aria-labelledby="open-source-title"><h2 class="section-title" id="open-source-title">Contributing to the data ecosystem</h2><div class="oss-grid">
+<article class="oss-item"><h3><a href="https://github.com/hardwood-hq/hardwood" target="_blank" rel="noopener">Hardwood ↗</a></h3><p>A minimal-dependency Java Parquet implementation that makes columnar data access practical without a heavy Hadoop stack.</p><p class="contribution">My contributions: dictionary-based predicate evaluation and floating-point Bloom filter pruning.</p></article>
+<article class="oss-item"><h3><a href="https://github.com/databricks/koalas" target="_blank" rel="noopener">Databricks Koalas ↗</a></h3><p>Brings familiar pandas APIs to distributed Spark dataframes. Its approach now lives in PySpark’s pandas API.</p><p class="contribution">My contributions: replace, cache, to_records and to_excel APIs.</p></article>
+</div></section>
+<p class="related">Also relevant to <a href="https://jobs.ashbyhq.com/wayve/288c7b75-731a-43ae-86e1-720d4f4f12e3" target="_blank" rel="noopener">Senior Software Engineer, Data and Orchestration ↗</a> through production Airflow workflows, recoverable processing and shared platform tooling.</p>
+<details class="sources"><summary>Evidence & scope</summary><p>Based on my supplied CV and subsequent updates: 250M+ daily events, a 70+ PB lake estate, tools adopted by 10+ teams, maintenance of 500+ mission-critical tables, and 450 tables migrated to Iceberg. The downloadable CV predates these updates. Cost comparisons retain their project-specific scope.</p><p>The Data role was reviewed on 21 October 2026. These examples show relevant ingestion, processing, migration and lifecycle experience; they do not claim Wayve-scale sensor transfer, production Flyte experience or Azure networking expertise.</p></details>
+</div>
+</Base>
