@@ -718,6 +718,8 @@ h1 { font-size: clamp(2.5rem, 4.6vw, 4rem); letter-spacing: -.035em; }
 
 .main--compact { padding-block: 48px 0; }
 .wayve-page > section + section { margin-top: 0; }
+.wayve-page .target { font-size: 16px; }
+.wayve-page .related-roles { grid-template-columns: 1fr; }
 .wayve-page .open-source { padding-bottom: 29px; }
 .nav--compact { gap: 25px; }
 @media (max-width: 680px) {
